@@ -62,3 +62,17 @@ The repository can be served by GitHub Pages or any static host. For GitHub Page
 ## Remaining setup
 
 The frontend and admin/customer screens are committed. Google OAuth still requires Google Client ID/Secret configuration in Supabase. The first administrator must be promoted manually using their own account UUID. Email notifications, payment processing and advanced catalogue editing are not included.
+
+## Send every new application to Discord
+
+New application submissions can be posted to a Discord channel as a rich embed using the Supabase Edge Function in `supabase/functions/notify-discord/index.ts`. The webhook URL is stored as a Supabase Function secret and is never exposed in the browser.
+
+1. In Discord, open the channel where you want requests to arrive. Open **Edit Channel → Integrations → Webhooks → New Webhook**, choose the channel, and copy its webhook URL. Keep this URL private.
+2. Create a Supabase personal access token at [Supabase Account → Access Tokens](https://supabase.com/dashboard/account/tokens).
+3. In this GitHub repository, open **Settings → Secrets and variables → Actions → New repository secret**. Add:
+   - `SUPABASE_ACCESS_TOKEN`: your Supabase personal access token.
+   - `DISCORD_WEBHOOK_URL`: the Discord webhook URL you copied.
+4. Open **Actions → Deploy Discord application notifications → Run workflow**. The workflow stores the webhook URL as a Supabase Function secret and deploys the `notify-discord` Edge Function.
+5. Submit a test application on the website while signed in. A rich embed should arrive in the selected Discord channel.
+
+The function verifies the signed-in customer and checks that the submitted application belongs to that account before sending it. Do not put the webhook URL or Supabase service-role key in `config.js`, frontend JavaScript, or public repository files. If a webhook URL is ever exposed, regenerate it in Discord immediately.
