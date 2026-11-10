@@ -15,7 +15,7 @@ create table if not exists public.applications (
   user_id uuid not null references auth.users(id) on delete cascade,
   service text not null,
   purpose text not null,
-  references text,
+  "references" text,
   budget text,
   timeline text,
   contact text not null,
@@ -46,6 +46,16 @@ as $$ select exists (select 1 from public.profiles where id = auth.uid() and rol
 alter table public.profiles enable row level security;
 alter table public.applications enable row level security;
 alter table public.catalog_items enable row level security;
+
+drop policy if exists "Customers read own profile" on public.profiles;
+drop policy if exists "Customers update own display name" on public.profiles;
+drop policy if exists "Admins manage profiles" on public.profiles;
+drop policy if exists "Customers submit own applications" on public.applications;
+drop policy if exists "Customers read own applications" on public.applications;
+drop policy if exists "Admins update applications" on public.applications;
+drop policy if exists "Admins delete applications" on public.applications;
+drop policy if exists "Anyone can view active catalogue" on public.catalog_items;
+drop policy if exists "Admins manage catalogue" on public.catalog_items;
 
 create policy "Customers read own profile" on public.profiles for select to authenticated using (id = auth.uid() or public.is_admin());
 create policy "Customers update own display name" on public.profiles for update to authenticated using (id = auth.uid() and role = 'customer') with check (id = auth.uid() and role = 'customer');
