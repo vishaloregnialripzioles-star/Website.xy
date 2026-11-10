@@ -15,7 +15,7 @@ create table if not exists public.applications (
   user_id uuid not null references auth.users(id) on delete cascade,
   service text not null,
   purpose text not null,
-  "references" text,
+  reference_notes text,
   budget text,
   timeline text,
   contact text not null,
@@ -24,6 +24,20 @@ create table if not exists public.applications (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- Migrate the earlier quoted column name without losing submitted data.
+do $
+begin
+  if exists (
+    select 1 from information_schema.columns
+    where table_schema = 'public' and table_name = 'applications' and column_name = 'references'
+  ) and not exists (
+    select 1 from information_schema.columns
+    where table_schema = 'public' and table_name = 'applications' and column_name = 'reference_notes'
+  ) then
+    alter table public.applications rename column "references" to reference_notes;
+  end if;
+end $;
 
 create table if not exists public.catalog_items (
   id uuid primary key default gen_random_uuid(),
