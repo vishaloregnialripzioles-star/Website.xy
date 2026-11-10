@@ -59,7 +59,7 @@ async function renderApplications(){
       const {error}=await supabase.from("applications").update({status,admin_note,updated_at:new Date().toISOString()}).eq("id",id);
       if(error){toast(error.message);button.disabled=false;button.innerHTML='Save application update <span>↗</span>';return}
       const item=data.find(row=>row.id===id);if(item){item.status=status;item.admin_note=admin_note}
-      toast("Application update saved");renderRows($("#applicationSearch").value,$("#applicationFilter").value);
+      toast("Application update saved");await renderDashboard("applications");
     }));
   };
   $("#applicationSearch").addEventListener("input",()=>renderRows($("#applicationSearch").value,$("#applicationFilter").value));
