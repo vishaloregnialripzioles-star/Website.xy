@@ -37,8 +37,8 @@ begin
   ) then
     alter table public.applications rename column "references" to reference_notes;
   end if;
-end
-$$;
+end;
+$;
 
 create table if not exists public.catalog_items (
   id uuid primary key default gen_random_uuid(),
