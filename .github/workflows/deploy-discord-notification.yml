@@ -27,7 +27,7 @@ jobs:
             echo "Add SUPABASE_ACCESS_TOKEN and DISCORD_WEBHOOK_URL in GitHub Actions secrets."
             exit 1
           fi
-          supabase secrets set --project-ref slvbjhoqjgtbttnvbuly "DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL"
+          supabase secrets set --yes --project-ref slvbjhoqjgtbttnvbuly "DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL"
       - name: Deploy Edge Function
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
