@@ -57,3 +57,44 @@ body{background:var(--bg);color:var(--text)}
 .small-button{background:#153b5e;border:1px solid #3b6d97;color:#eaf6ff;padding:7px 10px;font-size:10px;cursor:pointer}
 .inline-message{color:#86ccff}
 @media(max-width:700px){.dashboard-form{grid-template-columns:1fr}.dashboard-modal{padding:32px 16px}.dashboard-table{min-width:570px}.contact-panel{background:linear-gradient(145deg,#1c6095,#12416b)}}
+
+/* Admin application management and direct contact actions */
+.admin-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+.admin-stats>div{padding:15px;background:linear-gradient(145deg,#12375a,#0c2540);border:1px solid #2b5275;border-radius:12px}
+.admin-stats span,.admin-application-summary span{display:block;color:#9eb9d3;font-size:10px;margin-bottom:7px}
+.admin-stats strong{font:800 25px var(--display);color:#f1f8ff}
+.application-toolbar{display:grid;grid-template-columns:minmax(180px,1fr) 160px auto;gap:9px;margin:14px 0 18px}
+.application-toolbar input,.application-toolbar select,.application-admin-controls input,.application-admin-controls select{min-width:0;background:#06172a;border:1px solid #315575;color:#edf5ff;border-radius:9px;padding:11px;font:inherit;font-size:11px}
+.admin-application-list{display:grid;gap:13px}
+.admin-application-card{padding:18px;background:linear-gradient(145deg,#102b49,#0a2038);border:1px solid #2b4d6c;border-radius:14px;box-shadow:0 10px 28px #00102044}
+.admin-application-heading,.application-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.application-reference{font-size:9px;letter-spacing:.12em;color:#83caff}
+.admin-application-heading h3{font:700 21px/1.2 var(--display);margin:7px 0}
+.application-date{font-size:10px;color:#8fa9c2}
+.status-pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:99px;background:#233d58;color:#cfe6fa;font-size:9px;white-space:nowrap;border:1px solid #41617e}
+.status-pending{background:#45391d;color:#ffe0a0;border-color:#80662e}.status-processing{background:#173d5b;color:#a9ddff;border-color:#3976a4}.status-completed{background:#153e37;color:#a9f0d4;border-color:#347e68}.status-rejected{background:#482b37;color:#ffc1ce;border-color:#8b4b60}
+.admin-application-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:17px 0;padding:14px 0;border-top:1px solid #294967;border-bottom:1px solid #294967}
+.admin-application-summary strong{font-size:11px;color:#e5f2ff;overflow-wrap:anywhere}
+.application-details{margin:12px 0;color:#b9d1e7;font-size:11px}
+.application-details summary{cursor:pointer;color:#8dccff;font-weight:700;padding:8px 0}
+.application-detail-body{padding:5px 12px;background:#091d32;border-radius:9px;overflow-wrap:anywhere;line-height:1.65}
+.application-detail-body p{margin:10px 0}.application-detail-body b{color:#8fcaff}
+.application-admin-controls{display:grid;grid-template-columns:150px minmax(160px,1fr) auto;align-items:end;gap:10px;margin-top:15px}
+.application-admin-controls label{display:grid;gap:6px;color:#9eb9d3;font-size:10px}
+.application-admin-controls .admin-save-button{white-space:nowrap;padding:11px 14px;border-radius:9px}
+.application-admin-controls button:disabled{opacity:.6;cursor:wait}
+.customer-application{border-radius:13px}
+.studio-reply{margin-top:12px;padding:12px;background:#0b3652;border:1px solid #2c719a;border-radius:9px}
+.studio-reply p{margin:6px 0 0;color:#d5ebfb}
+.empty-dashboard{padding:24px;border-radius:12px}
+.contact-primary{width:100%;justify-content:center;border-radius:12px;box-shadow:0 8px 22px #031a3066;transition:transform .2s,box-shadow .2s}
+.contact-primary:hover{transform:translateY(-2px);box-shadow:0 13px 28px #031a3088}
+.contact-divider{display:flex;align-items:center;gap:12px;width:100%;margin:23px 0 13px;color:#c1e4ff;font-size:9px;letter-spacing:.15em}
+.contact-divider:before,.contact-divider:after{content:"";height:1px;flex:1;background:#8dcaff55}
+.contact-links{display:grid;gap:10px;width:100%}
+.contact-link{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid #82caff66;border-radius:12px;background:#06234455;color:#f3f9ff;text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
+.contact-link:hover{transform:translateY(-2px);border-color:#b7e1ff;background:#d9efff18}
+.contact-link-icon{display:grid;place-items:center;width:36px;height:36px;flex:none;border-radius:10px;background:#e8f5ff;color:#12385a;font-weight:800;font-size:15px}
+.contact-link>span:nth-child(2){display:grid;gap:4px;flex:1}
+.contact-link strong{font-size:12px}.contact-link small{font-size:9px;color:#c1d8ed}.contact-link>b{font-size:17px;color:#b9e1ff}
+@media(max-width:700px){.admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.application-toolbar{grid-template-columns:1fr 1fr}.application-toolbar input{grid-column:1/-1}.admin-application-summary{grid-template-columns:1fr 1fr}.application-admin-controls{grid-template-columns:1fr}.application-admin-controls .admin-save-button{width:100%}.contact-links{gap:8px}.contact-link{padding:12px}}
